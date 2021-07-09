@@ -1,0 +1,2 @@
+rootProject.name = 'par-jweather'
+include ':lib'
