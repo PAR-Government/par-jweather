@@ -1,12 +1,26 @@
 plugins {
     id 'java-library'
+    id 'maven-publish'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
-archivesBaseName = 'PAR-JWeather'
-version = '1.0-SNAPSHOT'
-group = 'com.partech'
 
 repositories {
     mavenCentral()
+}
+
+version = '1.0-SNAPSHOT'
+group = 'com.partech'
+
+shadowJar {
+    classifier = ''
+}
+
+publishing {
+    publications {
+        shadow(MavenPublication) { publication ->
+            project.shadow.component(publication)
+        }
+    }
 }
 
 dependencies {
