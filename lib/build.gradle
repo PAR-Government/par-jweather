@@ -9,7 +9,7 @@ repositories {
 }
 
 version = '1.0-SNAPSHOT'
-group = 'com.partech'
+group = 'io.github.par-government'
 
 shadowJar {
     classifier = ''
