@@ -31,6 +31,37 @@ publishing {
             project.shadow.component(publication)
             artifact sourceJar
             artifact javadocJar
+
+            pom {
+                name = 'PAR JWeather'
+                description = 'Derivation of the original JWeather library from https://github.com/arimus/jweather'
+                url = 'https://github.com/PAR-Government/par-jweather'
+                licenses {
+                    license {
+                        name = 'GNU Lesser General Public License, version 2.1'
+                        url = 'https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html'
+                    }
+                }
+                developers {
+                    developer {
+                        name = 'Gregory Hasseler'
+                        email = 'gregory_hasseler@partech.com'
+                        organization = 'PAR Government Systems Corporation'
+                        organizationUrl = 'https://pargovernment.net/'
+                    }
+                    developer {
+                        name = 'Scott Auman'
+                        email = 'scott_auman@partech.com'
+                        organization = 'PAR Government Systems Corporation'
+                        organizationUrl = 'https://pargovernment.net/'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/PAR-Government/par-jweather.git'
+                    developerConnection = 'scm:git:ssh://github.com:PAR-Government/par-jweather.git'
+                    url = 'https://github.com/PAR-Government/par-jweather'
+                }
+            }
         }
     }
 }
