@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
+    id 'signing'
     id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
 
@@ -8,7 +9,7 @@ repositories {
     mavenCentral()
 }
 
-version = '1.0-SNAPSHOT'
+version = '1.0.0'
 group = 'io.github.par-government'
 
 shadowJar {
@@ -29,8 +30,7 @@ publishing {
     publications {
         shadow(MavenPublication) { publication ->
             project.shadow.component(publication)
-            artifact sourceJar
-            artifact javadocJar
+            artifacts = [shadowJar, sourceJar, javadocJar]
 
             pom {
                 name = 'PAR JWeather'
@@ -64,6 +64,23 @@ publishing {
             }
         }
     }
+
+    repositories {
+        maven {
+            name = 'sonatype'
+            def releasesRepoUrl = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+            def snapshotsRepoUrl = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            credentials {
+                username "$mavenUser"
+                password "$mavenPassword"
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.shadow
 }
 
 dependencies {
